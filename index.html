@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cello Square</title>
+    <link rel="stylesheet" href="./style/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            color: white;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .fixBox {
+            position: fixed;
+            right: 0;
+            bottom: 0.6vw;
+            width: 150px;
+            z-index: 99;
+        }
+        .fixBox img {
+            width: 100%;
+            border-radius: 100%;
+        }
+        .fixBox li {
+            width: 45%;
+            margin: 0 0 0.4vw 50%;
+        }
+        header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .sub-header {
+            width: 100%;
+            height: 7vw;
+            color: #00c5a8;
+            font-weight: bold;
+            justify-content: space-between;
+            padding: 0 0 0 3vw;
+            display: none;
+        }
+        .ham-menu {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2vw;
+        }
+        .ham-menu img {
+            width: 50%;
+            display: block;
+        }
+        .ham-menu span {
+            font-size: 2vw;
+        }
+        .logo {
+            font-size: 0;
+            width: 150px;
+        }
+        .logo img {
+            width: 100%;
+        }
+        .lnb ul {
+            display: flex;
+            gap: 20px;
+            font-size: 0.9vw;
+            font-weight: bold;
+            color: black;
+        }
+        .lnb li {
+            height: 1.6vw;
+            padding-bottom: 1.5vw;
+        }
+        .lnb a:hover {
+            text-decoration: none;
+        }
+        .lnb li:hover {
+            display: block;
+            border-bottom: 1px solid lightgreen;
+            color: lightgreen;
+            transition-duration: 0.4s;
+        }
+        .lnb li:nth-child(4) a, .lnb li:nth-child(7) a {
+            position: relative;
+            margin-left: 25px;
+        }
+        .lnb ul>li>ul {
+            position: absolute;
+            top: 63px;
+            color: #a5a5a5;
+            display: none;
+            opacity: 0;
+        }
+        .lnb li:hover>ul {
+            display: flex;
+            border-bottom: 0px;
+            opacity: 1;
+            transition-duration: .4s;
+            font-weight: normal;
+        }
+        .imgCon {
+            position: absolute;
+            left: -30px;
+        }
+        .gnb ul {
+            display: flex;
+            gap: 10px;
+            font-size: 0.7vw;
+            align-items: center;
+            color: rgb(99, 99, 99);
+        }
+        .gnb ul img {
+            margin-left: 20px;
+        }
+        .gnb a:hover {
+            text-decoration: none;
+        }
+        .langBox {
+            display: none;
+            position: relative;
+        }
+        input[type="checkbox"]+label {
+            display: block;
+            width: 24px;
+            height: 24px;
+            background: url('./image/icon_globe.png') no-repeat 0 0px / contain;
+        }
+        input[type='checkbox']:checked+label {
+            background: url('./image/icon_globe.png') no-repeat 0 1px / contain;
+        }
+        input[type="checkbox"] {
+            display: none;
+        }
+        input[type='checkbox']:checked+label>.langBox {
+            display: block;
+        }
+        .langBox ul {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            left: -65px;
+            top: 40px;
+            width: 150px;
+            background-color: white;
+            z-index: 99;
+            padding: 10px 5px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        section {
+            width: 100%;
+        }
+        .main-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .mainImage {
+            width: 100%;
+            filter: brightness(50%);
+            position: absolute;
+            z-index: -1;
+        }
+        .mainContent {
+            color: white;
+            width: 70%;
+            padding: 4vw 0;
+        }
+        .mainContent h2 {
+            font-size: 3vw;
+        }
+        .mainContent span {
+            display: block;
+            margin-top: 30px;
+            font-size: 1vw;
+        }
+        .proBtn {
+            display: inline-block;
+            margin-top: 30px;
+            font-size: 0.7vw;
+            border: 1px solid white;
+            padding: 0.7vw 1.6vw;
+            border-radius: 5px;
+        }
+        .proBtn:hover {
+            text-decoration: none;
+        }
+        .mainBox {
+            width: 100%;
+            margin-top: 3vw;
+            background-color: rgba(255, 255, 255, 0.813);
+            padding: 2vw;
+            color: black;
+            border-radius: 10px;
+            display: flex;
+            gap: 4vw;
+        }
+        .mainBox h3 {
+            display: block;
+            width: 10vw;
+            font-size: 1.3vw;
+        }
+        .subBox {
+            display: flex;
+            align-items: center;
+            gap: 1vw;
+            flex-wrap: wrap;
+        }
+        .sea {
+            background-color: #00c5a8;
+            width: 60%;
+            height: 100%;
+            border-radius: 25px;
+            line-height: 3.5vw;
+            text-align: center;
+        }
+        .sea img, .sky img { 
+            width: 30%;
+        }
+        .sky {
+            text-align: center;
+            width: 50%;
+            height: 100%;
+            line-height: 3.5vw;
+        }
+        .selectType {
+            display: flex;
+            width: 13vw;
+            height: 3.5vw;
+            background-color: #bbbbbb;
+            border-radius: 25px;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1vw;
+        }
+        .selectInfo {
+            width: 100%;
+            display: flex;
+            gap: 3vw;
+        }
+        a.viewCost {
+            width: 10vw;
+            height: 3vw;
+            border-radius: 5px;
+            color: white;
+            background-color: #00c5a8;
+            text-align: center;
+            line-height: 3vw;
+        }
+        .viewCost:hover {
+            background-color: #008da0;
+        }
+        .sub-container1 {
+            width: 100%;
+            background-color: #f7f7f7;
+            color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10em 0;
+        }
+        video {
+            width: 90%;
+        }
+        .subContent1 {
+            width: 25%;
+            margin-left: 10%;
+        }
+        .subContent1 h2 {
+            font-size: 2.5vw;
+            margin-bottom: 30px;
+        }
+        .subContent1 p {
+            font-size: 1.2vw;
+            color: rgb(42, 42, 42);
+        }
+        a.sign-btn {
+            display: inline-block;
+            background-color: #00c5a8;
+            color: white;
+            width: 10vw;
+            height: 2.5vw;
+            text-align: center;
+            line-height: 2.6vw;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 1vw;
+        }
+        a.sign-btn:hover {
+            background-color: #008da0;
+        }
+        .subContent2 {
+            width: 50%;
+        }
+        .sub-container2 {
+            width: 80%;
+            margin: auto;
+            padding: 7vw 0;
+        }
+        .cardBox {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 25px;
+            justify-content: center;
+            margin: 20px auto 0;
+        }
+        .card {
+            width: 30%;
+            height: 30vw;
+            background-color: #184A4E;
+            border-radius: 15px;
+            position: relative;
+        }
+        .cardTitle {
+            color: black;
+            margin: 0 0 4vw 3vw;
+            font-size: 2.5vw;
+        }
+        .link-container {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+        .menu-container {
+            right: 10%;
+            top: 10%;
+            position: absolute;
+        }
+        .card-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2vw 1.7vw;
+        }
+        .card-container h2 {
+            font-size: 1.5vw;
+        }
+        .card-container+span {
+            display: block;
+            width: 2vw;
+            border-top: 2px solid white;
+            position: absolute;
+            left: 1.7vw;
+            top: 5vw;
+        }
+        .card p {
+            font-size: 0.7vw;
+        }
+        .card3 .card-container+span, .card4 .card-container+span, .card6 .card-container+span {
+            border-top: 2px solid #00c5a8;
+        }
+        .card1 {
+            background-image: url(./image/card1.jpg);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-color: rgb(118, 118, 118);
+            background-blend-mode: multiply;
+            position: relative;
+        }
+        .card2-bottom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 17vw;
+            gap: 1.3vw;
+        }
+        .card2-bottom-container img {
+            width: 6vw;
+        }
+        .card2-bottom-container span {
+            font-size: 1vw;
+        }
+        .card:hover {
+            transform: translateY(-1vw);
+            box-shadow: 5px 5px 10px rgba(82, 82, 82, 0.445);
+            transition-duration: .4s;
+            background-size: 105% auto;
+        }
+        .card:hover .bottomImg-container>img{
+            transform: scale(1.1);
+            transition-duration: .4s;
+        }
+        .card2, .card3, .card4, .card5, .card6{
+            position: relative;
+            overflow: hidden;
+        }
+        .card h2 {
+            color: white;
+        }
+        .card2 {
+            background-color: #00c5a8;
+        }
+        .bottomImg-container {
+            position: absolute;
+            top: 17vw;
+            width: 100%;
+            overflow: hidden;
+        }
+        .bottomImg-container img {
+            width: 100%;
+        }
+        .card5 {
+            background-image: url(./image/card5.png);
+            background-repeat: no-repeat;
+            background-size: 100% auto;
+            background-color: rgb(118, 118, 118);
+            background-blend-mode: multiply;
+        }
+        .card3, .card4, .card6 {
+            background-color: #f7f7f7;
+            color: black;
+        }
+        .card3 h2, .card4 h2, .card6 h2 {
+            color: #00c5a8;
+        }
+        .card4, .card5, .card6 {
+            margin-top: 1.5vw;
+        }
+        .content-container {
+            padding: 0 1.7vw;
+        }
+        .content-container h3 {
+            font-size: 1.5vw;
+            margin-bottom: 10px;
+        }
+        a.bottom-btn {
+            display: block;
+            color: black;
+            font-size: 1vw;
+            border: 1px solid rgb(163, 163, 163);
+            padding: 1.5vw 4vw;
+            border-radius: 4vw;
+            width: 20vw;
+            margin: 5vw auto;
+            text-align: center;
+        }
+        .bottom-btn:hover {
+            background-color: rgb(163, 163, 163);
+        }
+        .sub-container3 {
+            background-color: #f7f7f7;
+            color: black;
+            padding-bottom: 5vw;
+        }
+        .sub-container3-contents {
+            width: 80%;
+            margin: auto;
+            padding: 10vw 0 5vw;
+        }
+        .sub-container3-contents h2 {
+            font-size: 2.5vw;
+        }
+        .videoFrame img{
+            width: 100%;
+            filter: brightness(50%);
+        }
+        .sub-container4 {
+            color: black;
+            padding-bottom: 5vw;
+        }
+        .sub-container4-contents {
+            width: 70%;
+            margin: auto;
+            padding: 10vw 0 5vw;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+        .sub-container4-contents h2 {
+            font-size: 2.5vw;
+        }
+        .sub-container4-contents ul {
+            display: flex;
+            gap: 2vw;
+            font-size: 1vw;
+        }
+        .btnCon2 a {
+            color: #00c5a8;
+            font-weight: bold;
+            padding-bottom: 1px;
+            border-bottom: 1px solid #00c5a8;
+        }
+        #tab1:target {
+            display: block;
+        }
+        #tab1:target ~ #tab2 {
+            display: none;
+        }
+        #tab2:target {
+            display: block;
+        }
+        #tab1{
+            display:none; 
+        }
+        .box {
+            display: flex;
+            justify-content: center;
+            gap: 2vw;
+            flex-wrap: wrap;
+        }
+        .box a:hover {
+            background-color: rgb(223, 223, 223);;
+        }
+        .box a {
+            background-color: #f7f7f7;
+            width: 33vw;
+            border-radius: 1vw;
+            padding: 3vw;
+            font-weight: bold;
+            font-size: 1.5vw;
+        }
+        .box h2 {
+            color: #00c5a8;
+            font-size: 1.5vw;
+            padding-bottom: 0.5vw;
+        }
+        .box p:nth-child(2){
+            font-weight: normal;
+            font-size: 0.9vw;
+            padding-top: 0.5vw;
+        }
+        .box-span-container {
+            font-weight: normal;
+            font-size: 0.8vw;
+            padding-top: 0.5vw;
+            color: rgb(124, 124, 124);
+            display: flex;
+            justify-content: space-between;
+            letter-spacing: 0.04vw;
+        }
+        .sub-container5 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            background-color: #f7f7f7;
+            padding: 5vw 0;
+            gap: 2vw;
+            border-bottom: 1px solid #a5a5a5;
+        }
+        .sub-container5-contents h2 {
+            font-size: 2vw;
+            color: black;
+        }
+        .sub-container5-content {
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2vw;
+        }
+        .sub-container5-content ul {
+            font-size: 1.3vw;
+            color: #616161;
+        }
+        .sub-container5-content li {
+            padding-top: 0.5vw;
+        }
+        .sub-container5-content li img {
+            width: 1.5vw;
+        }
+        .sub-container5-content .sign-btn {
+            margin-top: 0.5vw;
+        }
+        .footer-container {
+            width: 80%;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            padding: 4vw 0;
+        }
+        .footer-container ul {
+            display: flex;
+            flex-wrap: wrap;
+            font-size: 1vw;
+            gap: 3vw;
+        }
+        .footer-container li {
+            width: 7vw;
+        }
+        .footer-container li>ul {
+            gap: 1vw;
+            margin-top: 1vw;
+        }
+        .footer-container li li {
+            font-size: 0.7vw;
+            color: #bbbbbb;
+        }
+        .footer-bottom-contents ul {
+            display: flex;
+            color: black;
+            gap: 1vw;
+            align-items: center;
+            justify-content: flex-end;
+            margin-right: 10vw;
+        }
+        .subBtn {
+            display: inline-block;
+            width: 10vw;
+            background-color: #f7f7f7;
+            text-align: center;
+            margin: 0 50px;
+            border-radius: 5 px;
+        }
+        .logo-container {
+            display: block;
+            width: 2vw;
+            height: 1.5vw;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo1 {
+            position: absolute;
+            top: -88px;
+        }
+        .logo2 {
+            position: absolute;
+        }
+        .logo3 {
+            position: absolute;
+            top: -22px;
+        }
+        .logo4 {
+            position: absolute;
+            top: -44px;
+        }
+        @media (max-width:770px) {
+            .main-header {
+                display: none;
+            }
+            .sub-header {
+                display: flex;
+            }
+            .sub-container1 {
+               text-align: center;
+               padding: 7vw 0;
+               flex-direction: column;
+               align-items: center;
+            }
+            .subContent1 {
+                margin: 0;
+            }
+            .subContent1 h2 {
+                font-size: 3vw;
+            }
+            .subContent1 p {
+                font-size: 1.7vw;
+                text-align: center;
+            }
+            .subContent1 a {
+                display: block;
+                margin-bottom: 5vw;
+            }
+            .subContent2 video {
+                width: 100%;
+            }
+            .cardBox {
+                overflow: hidden;
+            }
+            .card { 
+                width: 90%;
+                height: 50vw;
+            }
+            .box a {
+                width: 90%;
+                height: 35vw;
+            }
+            .sub-container5 {
+                display: block;
+            }
+            .sub-container5 img {
+                display: block;
+                margin: auto;
+            }
+            .sub-container5 h2 {
+                text-align: center;
+            } 
+            .sub-container5-content {
+                flex-direction: column;
+                gap: 2vw;
+            }
+            .sub-container5-content img {
+                display: inline;
+            }
+            a.sign-btn {
+                width: 24vw;
+                height: 5vw;
+                line-height: 5vw;
+                font-size: 2vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <ul class="fixBox">
+        <li><a href="#"><img src="./image/fixicon1.png" alt=""></a></li>
+        <li><a href="#"><img src="./image/fixicon2.png" alt=""></a></li>
+        <li><a href="#"><img src="./image/fixicon3.png" alt=""></a></li>
+        <li><a href="#"><img src="./image/fixicon4.png" alt=""></a></li>
+    </ul>
+    <header class="main-header">
+        <div class="logo">
+            <a href="./index.html"><img src="./image/logo.png" alt=""></a>
+            <h1>Cello Square</h1>
+        </div>
+        <div class="lnb">
+            <ul>
+                <li><a href="#">Why Cello Square</a>
+                    <ul>
+                        <li><a href="#">Cello Spuare 소개</a></li>
+                        <li><a href="#">삼성SDS물류</a></li>
+                        <li><a href="#">파트너십</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">견적조회</a></li>
+                <li><a href="#">물류서비스</a>
+                    <ul>
+                        <li><a href="#">포워딩</a></li>
+                        <li><a href="#">e-Commerce 물류</a></li>
+                        <li><a href="#">IT 특화 서비스</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">
+                    <img src="./image/ico_p_event.png" alt="" class="imgCon">
+                    이벤트</a></li>
+                <li><a href="#">리소스</a></li>
+                <li><a href="#">고객지원</a></li>
+                <li><a href="#">
+                    <img src="./image/bg_p_see_all_menu_blue.png" alt="" class="imgCon">
+                    전체상품보기</a></li>
+            </ul>
+        </div>
+        <div class="gnb">
+            <ul>
+                <li><a href="#">로그인</a></li>|
+                <li><a href="#">회원가입</a></li>
+                <input type="checkbox" id="lang" class="langImg">
+                <label for="lang" class="lang-container">
+                    <div class="langBox">
+                        <ul>
+                            <li><a href="#">한국/한국어</a></li>
+                            <li><a href="#">Global/English</a></li>
+                            <li><a href="#">中文 (简体)</a></li>
+                            <li><a href="#">Singapore/English</a></li>
+                            <li><a href="#">Việt nam/Tiếng Việt</a></li>
+                        </ul>
+                    </div>
+                </label>
+            </ul>
+        </div>
+    </header>
+    <header class="sub-header">
+        <div class="logo">
+            <img src="/image/logo.png" alt="">
+        </div>
+        <div class="ham-menu">
+            <span>회원가입</span>
+            <a href="#"><img src="./image/m_menu.png" alt=""></a>
+        </div>
+    </header>
+    <section>
+        <div class="main-container">
+            <img src="./image/event_hero_bg.png" alt="" class="mainImage">
+            <div class="mainContent">
+                <h2>연말 성수기 물류,<br>첼로 스퀘어와 미리 준비해보세요~!</h2>
+                <span>지금 바로 첼로 스퀘어 신규 가입 및 선적 하시면 크리스마스 트리, 쿠키박스 등 푸짐한 경품을 드립니다.</span>
+                <a href="#" class="proBtn">프로모션 바로가기</a>
+                <div class="mainBox">
+                    <div class="subBox">
+                        <h3>보내려는 화물의<br>운송 견적이<br>궁금하시다면?</h3>
+                    </div>
+                    <div class="subBox">
+                        <div class="selectType">
+                            <a href="#" class="sea">
+                                <img src="./image/ico_ocean.png" alt="">    
+                                해상
+                            </a>
+                            <a href="#" class="sky">
+                                <img src="./image/ico_flight.png" alt="">
+                                항공</a>
+                        </div>
+                        <div class="radioBox">
+                            <input type="radio" name="radio" checked>
+                            <label for="radio">FCL</label>
+                            <input type="radio" name="radio">
+                            <label for="radio">LCL</label>
+                        </div>
+                        <div class="selectInfo">
+                            <div class="start">
+                                <p>출발지</p>
+                                <input type="text" name="start" placeholder="출발 항구코드, 지역(영문입력)">
+                                <label for="start"></label>
+                            </div>
+                            <div class="end">
+                                <p>도착지</p>
+                                <input type="text" name="end" placeholder="도착 항구코드, 지역(영문입력)">
+                                <label for="end"></label>
+                            </div>
+                            <div class="conInfo">
+                                <p>화물정보</p>
+                                <input type="text" name="con" placeholder="0">
+                                <label for="con"></label>
+                                <select name="dry">
+                                    <option value="20' Dry"></option>
+                                    <option value="40' Dry"></option>
+                                    <option value="40' HC"></option>
+                                </select>
+                            </div>
+                            <a href="#" class="viewCost">실시간 견적조회</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sub-container1">
+            <div class="subContent1">
+                <h2>하나의 플랫폼에서<br>즉시 견적부터<br>정산까지!</h2>
+                <p>즉시 견적 조회와 예약으로 빠르게,<br>실시간 모니터링으로 안전하게,<br>투명한 정산으로 믿을 수 있는<br>물류 서비스를 만나보세요.</p>
+                <a href="#" class="sign-btn">무료회원 가입하기</a>
+            </div>
+            <div class="subContent2">
+                <video autoplay muted>
+                    <source src="./video/main_video_kr.mp4" type="video/mp4">
+                </video>
+            </div>
+        </div>
+        <div class="sub-container2">
+            <h2 class="cardTitle">Cello Square의 차별화된 물류 상품을 이용하세요</h2>
+            <div class="cardBox">
+                <div class="card card1">
+                        <a href="#" class="link-container">
+                            <div class="card-container">
+                                <h2>포워딩</h2>
+                            </div>
+                            <span></span>
+                            <div class="content-container">
+                                <h3>항공 포워딩 서비스</h3>
+                                <p>전 세계 연간 약 40만 톤 이상의 대규모 항공 물동을 운영하고 있어요. 주요 항공사와의 전략적 협업으로 경제적인 항공 운임까지 즉시 제공하죠.</p>
+                            </div>
+                        </a>
+                        <a href="#" class="menu-container">
+                            <img src="./image/icon_p_more_vertical_w.png" alt="">
+                        </a>
+                </div>
+                <div class="card card2">
+                    <a href="#" class="link-container">
+                        <div class="card-container">
+                            <h2>포워딩</h2>
+                        </div>
+                        <span></span>
+                        <div class="content-container">
+                            <h3>중남미향 리포워딩 서비스</h3>
+                            <p>전 세계 연간 약 40만 톤 이상의 대규모 항공 물동을 운영하고 있어요. 주요 항공사와의 전략적 협업으로 경제적인 항공 운임까지 즉시 제공하죠.</p>
+                        </div>
+                    </a>
+                    <a href="#" class="menu-container">
+                        <img src="./image/icon_p_more_vertical_w.png" alt="">
+                    </a>
+                    <div class="card2-bottom-container">
+                        <span>인천공항</span>
+                        <div>
+                            <img src="./image/icon_m_flight.png" alt="">
+                        </div>
+                        <span>중남미</span>
+                    </div>
+                </div>
+                <div class="card card3">
+                    <a href="#" class="link-container">
+                        <div class="card-container">
+                            <h2>포워딩</h2>
+                        </div>
+                        <span></span>
+                        <div class="content-container">
+                            <h3>해상 FCL 서비스 (프리미엄)</h3>
+                            <p>최단기간 해상 운송 스케줄과 안정적인 서비스를 제공할 수 있어요. 실시간 운임 확인부터 운송 의뢰까지 특급 FCL 서비스를 만나보세요.</p>
+                        </div>
+                        <div class="bottomImg-container">
+                            <img src="./image/card3.png" alt="">
+                        </div>
+                    </a>
+                    <a href="#" class="menu-container">
+                        <img src="./image/icon_p_more_vertical_b.png" alt="">
+                    </a>
+                </div>
+                <div class="card card4">
+                    <a href="#" class="link-container">
+                        <div class="card-container">
+                            <h2>포워딩</h2>
+                        </div>
+                        <span></span>
+                        <div class="content-container">
+                            <h3>소량화물 해상운송 서비스 (LCL)</h3>
+                            <p>전 세계 주요 선사의 해상화물 운송 스케줄과 선박의 이동경로 확인 서비스를 제공해요. 파트너십을 통해 국내외 최적의 네트워크를 활용할 수 있어요.</p>
+                        </div>
+                        <div class="bottomImg-container">
+                            <img src="./image/card4.png" alt="">
+                        </div>
+                    </a>
+                    <a href="#" class="menu-container">
+                        <img src="./image/icon_p_more_vertical_b.png" alt="">
+                    </a>
+                </div>
+                <div class="card card5">
+                    <a href="#" class="link-container">
+                        <div class="card-container">
+                            <h2>포워딩</h2>
+                        </div>
+                        <span></span>
+                        <div class="content-container">
+                            <h3>수출입 특송 서비스</h3>
+                            <p>글로벌 이커머스 판매기업을 위한 전세계로 배송하는 가장 빠르고 편리한 방법, 수출입 특송 서비스를 이용해보세요! 특송 서비스로 글로벌 셀링을 완성할 수 있어요.</p>
+                        </div>
+                    </a>
+                    <a href="#" class="menu-container">
+                        <img src="./image/icon_p_more_vertical_b.png" alt="">
+                    </a>
+                </div>
+                <div class="card card6">
+                    <a href="#" class="link-container">
+                        <div class="card-container">
+                            <h2>포워딩</h2>
+                        </div>
+                        <span></span>
+                        <div class="content-container">
+                            <h3>아마존 FBA 특송 운송 서비스 (글로벌)</h3>
+                            <p>글로벌 아마존 FBA를 위한 가장 빠른 운송 서비스를 제공해요. Cello Square는 아마존코리아의 공식 SPN 으로 아마존 FBA 특송에 특화되어 있어요.</p>
+                        </div>
+                        <div class="bottomImg-container">
+                            <img src="./image/card6.png" alt="">
+                        </div>
+                    </a>
+                    <a href="#" class="menu-container">
+                        <img src="./image/icon_p_more_vertical_b.png" alt="">
+                    </a>
+                </div>
+                <a href="#" class="bottom-btn">전체상품보기</a>
+            </div>
+        </div>
+        <div class="sub-container3">
+            <div class="sub-container3-contents">
+                <h2>Cello Square가 만드는 디지털 물류,
+                    <br>영상으로 확인하세요.</h2>               
+            </div>
+            <div class="videoFrame">
+                <img src="./image/videoFrame1.png" alt="">
+            </div>
+            <a href="#" class="bottom-btn">동영상 더보기</a>
+        </div>
+        <div class="sub-container4">
+            <div class="sub-container4-contents">
+                <h2>Cello Square의 좋은 점,
+                    <br>더 자세히 알아볼까요?</h2>   
+                    <ul>
+                        <li class="btnCon1"><a href="#tab1">마켓 업데이트</a>
+                        </li>
+                        <li class="btnCon2"><a href="#tab2">블로그</a>  
+                        </li>    
+            </div>
+            <div id="tab1">
+                <div class="box">
+                    <a href="#">
+                        <h2>글로벌 뉴스</h2>
+                        Maersk, 스페인 정부와 그린연료 생산계약 체결
+                        <p>컨테이너 선사 Maersk가 그린 메탄올로 운영할 수 있는 이중 연료 엔진을 갖춘 총 19척의 선박을 주문했다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <h2>글로벌 뉴스</h2>
+                        새로운 규제가 컨테이너 Capa에 미치는 영향에 대한 업계의 추측 지속
+                        <p>새로운 국제 환경 규율이 선사들로 하여금 오래되고 비효율적인 선박을 해체하게 만들고 있다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <h2>글로벌 뉴스</h2>
+                        JOC 순위: 컨테이너 선사가 2021년 기록적 운송 매출 성장을 이끌다
+                        <p>운송매출 상위 50에 이름을 올린 11개 해운선사의 76.8% 매출증가로 인하여 2021년 전체 매출이 기록적 수치인 31.4% 증가했다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <h2>글로벌 뉴스</h2>
+                        화주들에 대한 지정학적 혼란 위협 고조
+                        <p>미국 수입업체들은 중국 외 타지역으로 조달을 다양화해야 하는 압박을 그 어느 때보다도 크게 받고 있다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div id="tab2">
+                <div class="box">
+                    <a href="#">
+                        <h2>전문가 칼럼</h2>
+                        준비된 자들의 쇼핑축제, 이익을 극대화하는 '물류'
+                        <p>전세계적으로 최대 규모의 쇼핑 페스티벌이 열리는 11월을 맞이하여 글로벌 이커머스 판매자의 효과적인 물류 운영 전략을 살펴봅니다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <h2>이커머스 트렌드</h2>
+                        아마존 운영비용 절감법
+                        <p>아마존 사업을 운영하는 과정에서 발생하는 다양한 비용들을 소개하고, 불필요한 지출을 방지할 수 있는 방안을 소개합니다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <h2>물류 용어집</h2>
+                        관세법 개정
+                        <p>수출입 기업과 이커머스 셀러라면 반드시 알아야 할 최근 관세법 개정사항들을 자세히 소개합니다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                    <a href="#">
+                        <h2>이커머스 트렌드</h2>
+                        아마존 공식 리뷰 축적 프로그램, Vine 사용 방법과 유의 사항
+                        <p>아마존이 직접 운영하는 체험단 프로그램 Vine이 무엇인지 알아보고, 장/단점, 신청 방법, 유의 사항 등을 살펴봅니다.</p>
+                        <div class="box-span-container">
+                            <span>2022-11-15</span>
+                            <span>Source:Journal of Commerce</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <a href="#" class="bottom-btn">리소스 더보기</a>
+        </div>
+        <div class="sub-container5">
+            <img src="./image/con5.png" alt="">
+            <div class="sub-container5-contents">
+                <h2>어려웠던 물류가 Cello Square로 쉬워져요!<br>
+                    회원가입 한번으로 다양한 서비스를 이용하세요.</h2>
+                <div class="sub-container5-content">
+                    <ul>
+                        <li>
+                            <img src="./image/ico-check.png" alt="">
+                            견적 조회/예약 쉽고 빠르게!</li>
+                        <li>
+                            <img src="./image/ico-check.png" alt="">
+                            실시간 모니터링으로 안전하게!</li>
+                        <li>
+                            <img src="./image/ico-check.png" alt="">
+                            투명한 정산으로 믿을 수 있게!</li>
+                    </ul>
+                    <a href="#" class="sign-btn">무료회원 가입하기</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-container">
+            <div class="logo">
+                <img src="./image/logo.png" alt="">
+            </div>
+            <ul class="lineCon">
+                <li>
+                    <a href="#">Why Cello<br>Square</a>
+                    <ul>
+                        <li><a href="#">Cello Square 소개</a></li>
+                        <li><a href="#">삼성SDS물류</a></li>
+                        <li><a href="#">파트너십</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">견적조회</a></li>
+                <li>
+                    <a href="#">물류서비스</a>
+                    <ul>
+                        <li><a href="#">포워딩</a></li>
+                        <li><a href="#">e-Commerce 물류</a></li>
+                        <li><a href="#">IT 특화 서비스</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">이벤트</a></li>
+                <li>
+                    <a href="#">리소스</a>
+                    <ul>
+                        <li><a href="#">뉴스룸</a></li>
+                        <li><a href="#">마켓 업데이트</a></li>
+                        <li><a href="#">블로그</a></li>
+                        <li><a href="#">백서</a></li>
+                        <li><a href="#">동영상</a></li>
+                        <li><a href="#">가이드</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">고객지원</a></li>
+            </ul>
+        </div>
+        <div class="footer-bottom-contents">
+            <ul>
+                <li><a href="#">개인정보처리방침</a></li>
+                <li><a href="#">이용약관</a></li>
+                <li><a href="#">이메일무단수집거부</a></li>
+                <li><img src="./image/img_p_wa.png" alt=""></li>
+                <li><a href="#" class="subBtn">뉴스레터 구독신청</a></li>
+                <li><a href="#" class="logo-container"><img src="./image/sp_p_sns.png" alt="" class="logo1"></a></li>
+                <li><a href="#" class="logo-container"><img src="./image/sp_p_sns.png" alt="" class="logo2"></a></li>
+                <li><a href="#" class="logo-container"><img src="./image/sp_p_sns.png" alt="" class="logo3"></a></li>
+                <li><a href="#" class="logo-container"><img src="./image/sp_p_sns.png" alt="" class="logo4"></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

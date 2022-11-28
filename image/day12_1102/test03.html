@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/box.css">
+    <style>
+        .box{ box-sizing: content-box;
+            margin: 50px;
+        }
+        /* transform-origin : 왜곡의 중심점 */
+        span{ transition:1s; }
+        .box01:hover>span{ transform:rotate(360deg); }
+
+        .box02>span{ transform-origin: top left;}
+        .box02:hover>span{ transform:rotate(-360deg); }
+
+        .box03>span{ transform-origin: top right;}
+        .box03:hover>span{ transform:rotate(360deg); }
+
+        .box04>span{ transform-origin:center center ;}
+        .box04:hover>span{ transform:rotate(360deg);
+                transform-origin:top right ;
+        }
+
+        /* 중심점 변화가 눈에 띄지 않음 */
+        .box05>span{ transform-origin:center center ;}
+        .box05:hover>span{ transform:translateX(50px);
+                transform-origin:top right ;
+        }
+
+        .box06>span{ transform-origin:center center ;}
+        .box06:hover>span{ transform:skewX(20deg); }
+
+        .box07>span{ transform-origin:top right ;}
+        .box07:hover>span{ transform:skewX(20deg); }
+
+        .box08>span{ }
+        .box08:hover>span{ transform:skewX(20deg); 
+            transform-origin:top right ;
+        }
+
+        
+        .box09>span{ }
+        .box09:hover>span{ transform:scale(0.5); 
+            transform-origin:top right ;
+        }
+        .box10>span{ 
+            transform-origin:top right ;}
+        .box10:hover>span{ transform:scale(0.5); 
+        }
+
+        .box11>span{ 
+            transform-origin:center center ;}
+        .box11:hover>span{ transform:scale(0.5); 
+        }
+
+        
+    </style>
+</head>
+<body class="flex">
+    <div class="box box01"><span class="span">box01</span></div>
+    <div class="box box02"><span class="span">box02</span></div>
+    <div class="box box03"><span class="span">box03</span></div>
+    <div class="box box04"><span class="span">box04</span></div>
+    <div class="box box05"><span class="span">box05</span></div>
+    <div class="box box06"><span class="span">box06</span></div>
+    <div class="box box07"><span class="span">box07</span></div>
+    <div class="box box08"><span class="span">box08</span></div>
+    <div class="box box09"><span class="span">box09</span></div>
+    <div class="box box10"><span class="span">box10</span></div>
+    <div class="box box11"><span class="span">box11</span></div>
+    <div class="box box12"><span class="span">box12</span></div>
+    <div class="box box13"><span class="span">box13</span></div>
+    <div class="box box14"><span class="span">box14</span></div>
+    <div class="box box15"><span class="span">box15</span></div>
+    <div class="box box16"><span class="span">box16</span></div>
+    <div class="box box17"><span class="span">box17</span></div>
+    <div class="box box18"><span class="span">box18</span></div>
+    <div class="box box19"><span class="span">box19</span></div>
+    <div class="box box20"><span class="span">box20</span></div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <style>
+        label{ display: block; width: 100px; height: 30px;
+            background-color: gray; color:#fff; 
+            text-align: center; line-height: 30px;
+            text-transform: uppercase;
+        }
+
+        /* mask
+           모니터에서 사물 사이즈 변경이 일어날때 
+           기본 동작 : 왼쪽 -> 오른쪽, 위쪽  -> 아래쪽
+           
+           오른쪽 -> 왼쪽, 아래 -> 위쪽
+        */
+        .box{ font-size: 200px; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            /* height:0px; */
+            overflow: hidden;
+            width:0;  height: 210px;
+            transition: 1s;
+            
+            position: absolute; right:0; 
+        }
+        #show:checked ~ .box{ 
+            height: 210px;
+            width: 100vw;
+        }
+
+        .box>div{ position: absolute;  left: -1000px;}
+        .box>div>span{ position: absolute;
+                right:0; 
+        }
+    </style>
+</head>
+<body>
+    <input type="checkbox" id="show">
+    <label for="show"> show </label>
+
+    <div class="box">
+        <div><span>SHOWBOX</span></div>
+    </div>
+    <!-- 
+        아래 -> 위로 
+        오른쪽 -> 왼쪽 
+
+     -->
+</body>
+</html>

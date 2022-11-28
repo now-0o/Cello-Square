@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/box.css">
+    <style>
+        .bars{ display: flex; flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+         .bars span{ display: block; width:100px; height: 20px; background-color: black;
+            transition: 0.4s; 
+        }
+
+        #bars:checked+label>span:nth-child(1){
+                    transform:translateY(55px) ;
+         }
+        #bars:checked+label>span:nth-child(3){
+                    transform:translateY(-55px) ;
+         }
+
+         /* #move:checked+label+.movebox{  */
+         .movebox{ transition: 0.4s; }
+         #move:checked ~ .movebox{ 
+                    /* 틸드 */
+            transform: translateX(100px);
+         }
+    </style>
+</head>
+<body>
+    <form action="">
+        <input type="checkbox" id="checkbox">
+        <label for="checkbox"> 선택 </label>
+        <!-- 웹접근성에 적합한 페이지 제작을 위해 만들어진 기능 -->
+    </form>
+
+    <input type="checkbox" id="bars">
+    <label class="bars box" for="bars">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+
+    <input type="checkbox" id="move">
+    <label for="move">박스를 이동하려면 클릭하세요.</label>
+    <div class="box  movebox"></div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/box.css">
+    <style>
+         .box{ margin: 50px;    position: relative;    }
+         .box:hover>span{ top : -40px; opacity: 1;}
+         .box>span{ 
+            display: block;
+            width: 100px; height: 30px;
+            background-color: black;
+            border-radius: 5px;
+            margin-bottom: 100px;
+            position: absolute;  
+            left: calc( 50% - 50px); top: -40px;
+            z-index:-1; 
+            /* 뒤로 숨기기 */
+            transition: 0.5s;   opacity: 0;
+         }
+         .box>span::after{ content:'';
+                transform: translate( 39px, 30px);
+                border: 10px solid red; 
+                width:0; height: 0; display: block;
+                border-right-color: transparent;
+                border-bottom-color: transparent;
+                border-left-color: transparent;   
+        }
+    </style>  
+</head>
+<body>
+    <!-- <div class="tooltip">TOOLTIP</div> -->
+    <div class="box"> <span></span> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Assumenda fugit aut eius amet. Ipsum assumenda accusamus vero nobis animi doloribus quis molestiae ratione sunt, quia culpa a earum reiciendis nemo!</div>
+</body>
+</html>

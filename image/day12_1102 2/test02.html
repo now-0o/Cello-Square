@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>transform:2D</title>
+    <link rel="stylesheet" href="../style/reset.css">
+    <link rel="stylesheet" href="../style/box.css">
+    <style>
+        .box{ box-sizing: content-box;
+             background-color: transparent;
+             border:1px solid black;
+             margin:100px;
+        }
+
+        span{ display: block;
+            width:100%; height: 100%;
+            background-color: skyblue;
+            transition: .4s;
+        }
+
+        .box01:hover>span{ transform:translateX(50px);}
+        .box02:hover>span{ transform:translateY(50px);}
+        .box03:hover>span{ transform:translate(50px, 20px);}
+        .box04:hover>span{ transform:rotate(45deg);}
+        .box05:hover>span{ transform:skewX(20deg);}
+        .box06:hover>span{ transform:skewX(-20deg);}
+        .box07:hover>span{ transform:skewY( 20deg);}
+        .box08:hover>span{ transform:skewY(-20deg);}
+        .box09:hover>span{ transform:scale(0.5);}
+        /* scale 은 단위를 사용하지 않고 
+            1보다 작으면 축소, 1보다 확대
+            0에 가까울수록 축소, 음수도 사용가능
+            음수를 사용하면 이미지가 뒤집힘
+        */
+        .box10:hover>span{ transform:scale(1.2);}
+        .box11:hover>span{ transform:scale(-0.7);}
+        .box12:hover>span{ transform:scaleX(0.5);}
+        .box13:hover>span{ transform:scaleY(0.5);}
+        .box14:hover>span{ transform:scale(0.5)  translateX(50px);}
+        .box15:hover>span{ transform:translateX(50px) rotate(45deg);}
+        .box16:hover>span{ transform:rotate(45deg) translateX(50px) ;}
+        .box17:hover>span{ transform:scale(0.5) translateX(50px)  rotate(45deg) ;}
+    </style>
+</head>
+<body class="flex">
+    <div class="box box01"><span>box01</span></div>
+    <div class="box box02"><span>box02</span></div>
+    <div class="box box03"><span>box03</span></div>
+    <div class="box box04"><span>box04</span></div>
+    <div class="box box05"><span>box05</span></div>
+    <div class="box box06"><span>box06</span></div>
+    <div class="box box07"><span>box07</span></div>
+    <div class="box box08"><span>box08</span></div>
+    <div class="box box09"><span>box09</span></div>
+    <div class="box box10"><span>box10</span></div>
+    <div class="box box11"><span>box11</span></div>
+    <div class="box box12"><span>box12</span></div>
+    <div class="box box13"><span>box13</span></div>
+    <div class="box box14"><span>box14</span></div>
+    <div class="box box15"><span>box15</span></div>
+    <div class="box box16"><span>box16</span></div>
+    <div class="box box17"><span>box17</span></div>
+    <div class="box box18"><span>box18</span></div>
+    <div class="box box19"><span>box19</span></div>
+    <div class="box box20"><span>box20</span></div>
+</body>
+</html>
